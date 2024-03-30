@@ -66,7 +66,7 @@ public class HelloController {
    @FXML
    public Label turn_p1;
    public Label turn_p2;
-   public int button_no = 10;
+   public int button_no = 2;
 
 
     public boolean battle = true;
@@ -384,10 +384,14 @@ public class HelloController {
             hit1++;
             b1.setText("Buttons left: "+(button_no-hit1));
             if(hit1 == button_no){
-                turn_p1.setText("Player 1 has won");
-                anchor.getChildren().remove(swicth_p1);
-                anchor.getChildren().remove(m2);
-                anchor.getChildren().remove(b2);
+                swicth_p1.setText("END");
+                swicth_p1.setOnAction(event -> {
+                    try {
+                        game_over(event, "game_over.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
         }
         t1 = false;
@@ -411,28 +415,25 @@ public class HelloController {
             hit2++;
             b2.setText("Buttons left: "+(button_no-hit2));
             if(hit2 == button_no){
-                turn_p2.setText("Player 2 has won");
-                anchor.getChildren().remove(turn1);
-                anchor.getChildren().remove(m2);
-                anchor.getChildren().remove(b2);
+                turn1.setText("END");
+                turn1.setOnAction(event -> {
+                    try {
+                        game_over(event, "game_over2.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
         }
         t1 = true;
         t2 = false;
     }
 
-    public void game_over(ActionEvent e, int x) throws  IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game_over.fxml"));
-        game_over_controller controller = fxmlLoader.getController();
-        if(x == 2){
-            controller.change_text("Winner: Player 2");
-        }
-        else{
-            controller.change_text("Winner: Player 1");
-        }
+    public void game_over(ActionEvent e,String file) throws  IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(file));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Battleship p1");
+        stage.setTitle("Battleship");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

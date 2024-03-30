@@ -6,6 +6,6 @@
 <AnchorPane fx:id="end" prefHeight="600.0" prefWidth="884.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lab06_1b_210041102.HelloController">
    <children>
       <Label fx:id="gameOver" alignment="CENTER" layoutX="149.0" layoutY="78.0" prefHeight="146.0" prefWidth="586.0" text="Game Over" />
-      <Label fx:id="win" alignment="CENTER" layoutX="81.0" layoutY="257.0" prefHeight="136.0" prefWidth="722.0" text="Winner: Player 1" />
+      <Label fx:id="win" alignment="CENTER" layoutX="244.0" layoutY="257.0" prefHeight="116.0" prefWidth="396.0" text="Winner: Player 2" />
    </children>
 </AnchorPane>
